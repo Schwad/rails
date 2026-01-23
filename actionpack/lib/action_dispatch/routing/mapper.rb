@@ -210,16 +210,6 @@ module ActionDispatch
           end
 
           def normalize_options!(options, path_params, modyoule)
-            if path_params.include?(:controller)
-              raise ArgumentError, ":controller segment is not allowed within a namespace block" if modyoule
-
-              # Add a default constraint for :controller path segments that matches namespaced
-              # controllers with default routes like :controller/:action/:id(.:format), e.g:
-              # GET /admin/products/show/1
-              # # > { controller: 'admin/products', action: 'show', id: '1' }
-              options[:controller] ||= /.+?/
-            end
-
             if to.respond_to?(:action) || to.respond_to?(:call)
               options
             else

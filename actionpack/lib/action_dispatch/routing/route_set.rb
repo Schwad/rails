@@ -655,16 +655,16 @@ module ActionDispatch
         named_routes[name] = route if name
 
         if route.segment_keys.include?(:controller)
-          ActionDispatch.deprecator.warn(<<-MSG.squish)
-            Using a dynamic :controller segment in a route is deprecated and
-            will be removed in Rails 9.0.
+          raise ArgumentError, <<-MSG.squish
+            Using a dynamic :controller segment in a route is not supported.
+            Please specify the controller explicitly: get '/path', to: 'controller#action'
           MSG
         end
 
         if route.segment_keys.include?(:action)
-          ActionDispatch.deprecator.warn(<<-MSG.squish)
-            Using a dynamic :action segment in a route is deprecated and
-            will be removed in Rails 9.0.
+          raise ArgumentError, <<-MSG.squish
+            Using a dynamic :action segment in a route is not supported.
+            Please specify the action explicitly: get '/path', to: 'controller#action'
           MSG
         end
 

@@ -129,11 +129,7 @@ module ActionDispatch
           end
 
           parameterized_parts.each do |k, v|
-            if k == :controller
-              parameterized_parts[k] = v
-            else
-              parameterized_parts[k] = v.to_param
-            end
+            parameterized_parts[k] = v.to_param
           end
 
           parameterized_parts.compact!
